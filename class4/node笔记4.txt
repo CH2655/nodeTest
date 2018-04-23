@@ -1,0 +1,34 @@
+get请求接收数据
+
+1.http中req.url方法
+	如果请求路径为'http://www.baidu.com/index?a=5&b=2' 	
+	req.url==》返回/index?a=5&b=2'
+	获取前端传的数据需要截取字符串来获取
+
+2.url模块（解析请求路径）
+	var url=require("url");
+	parse方法
+	url.parse("要解析的路径"，async);
+	返回值
+		Url {
+  			protocol: 'http:',
+  			slashes: true,
+  			auth: null,
+  			host: 'www.baidu.com',
+  			port: null,
+  			hostname: 'www.baidu.com',
+  			hash: null,
+  			search: '?a=5&b=2',
+  			query: { a: '5', b: '2' },
+  			pathname: '/index',//请求的路径
+  			path: '/index?a=5&b=2',
+  			href: 'http://www.baidu.com/index?a=5&b=2' 
+		}
+
+		async为true的时候解析成query: { a: '5', b: '2' }
+		async为false的时候解析成 query: 'a=5&b=2',(默认为false)
+3.querystring模块（解析前端传过来的数据）
+	var str=querystring.parse("a=2&b=5");
+	返回{ a: '2', b: '5' }
+
+	

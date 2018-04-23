@@ -1,0 +1,12 @@
+1.get接受数据
+    直接是req.url  然后用url.parse进行解析请求路径 即可得到接收的数据
+
+2.接受post请求的数据
+    post数据很大 需要一段一段传
+    用on"data"监听返回的数据
+    req.on("data",function (data){
+
+    })
+    req.on("end",function (){//数据接收结束
+        得到的数据用querystring.parse解析
+    })

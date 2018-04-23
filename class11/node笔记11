@@ -1,0 +1,52 @@
+请求服务器都是通过http协议，http协议是无状态的，两次请求之间无法判断是不是同一个人
+cookie session（保存数据）
+1.cookie（保存在客户端，用户可以进行修改）
+    在浏览器中保存一些数据，每次请求会带过来
+    *不安全，有限（4kb）
+
+  用法：
+        创建：res.cookie("key","value",{path:"路径"，maxAge:"毫秒数"})
+              path:在哪个目录下可以访问cookie
+        读取：cookie_parser (中间件)
+              server.use(cookieParser());
+              *req.cookies直接获取到所有的cookie值(为签过名的cookie);
+              *req.signedCookies 获取所有签过名的cookie
+        删除：res.clearCookie("名字")
+        加密（签名）：server.use(cookieParser("秘钥"))；
+              req.secret("秘钥")；
+              res.cookie("key","value",{signed:true});
+
+              这样保存在浏览器中的cookie值就是一个加密后的值，类似s%3Achenhe.8tysTRXbRcxUjQ8cTFYyoQj1bNQ%2FtWoZhNhHGrQNZqY
+              node解析这个加密后的字符串  decodeURIComponent("s%3Achenhe.8tysTRXbRcxUjQ8cTFYyoQj1bNQ%2FtWoZhNhHGrQNZqY");
+              返回值为s:chenhe.8tysTRXbRcxUjQ8cTFYyoQj1bNQ/tWoZhNhHGrQNZqY；
+
+              值还是能看见不能加密，但是可以防止被修改，当改变值之后签名的值会有改变
+        加密：cookie-encrypter(中间件)；
+  *    aaa/a.html  这个目录下的cookie
+       /根目录下也可以访问cookie
+       父级目录可以访问子目录下的cookie,反之则不可以
+
+2.session(保存在服务端，用户无法修改)
+    *安全，无限
+    无法独立存在，是基于cookie实现的，cookie中有一个session id，通过这个id来读取数据
+    隐患：session劫持
+        session_id也是也是存在客户端的一个cookie,如果这个session_id被人拿走就叫session劫持，别人将以你的身份访问服务器
+    用法：
+        cookie_session(中间件,在cookieParser之后调用，需要一个key)
+        server.use(cookieSession({
+            name:"sess",//sessionid的名字
+            keys:["aa","bb","cc"],
+            maxAge:"毫秒"//session的有效期
+        }))
+        创建session:
+        server.use("/", function (req,res) {
+            if(req.session['count']==null){
+                req.session['count']=1;
+            }else{
+                req.session['count']++;
+            }
+            console.log(req.session["count"]);
+            res.send("ok");//必须有，代表一次访问结束
+        })
+        删除：
+            delete req.session

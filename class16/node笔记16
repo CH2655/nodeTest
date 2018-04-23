@@ -1,0 +1,26 @@
+consolidate--整合模板引擎   就是帮助express适配各种模板引擎
+   用法：
+    //配置模板引擎
+    //(1)使用哪种模板引擎
+    server.set('view engine','html')
+    //(2)模板引擎放在哪里了
+    server.set('views','./views')
+    //(3)输出什么东西
+    server.engine('html',consolidate.ejs)
+    //处理请求
+    server.get("/index",function (req,res){
+        res.render("1.ejs",{name:"chenhe"})//读取文件发送到前台
+        //res.send()直接发送东西到浏览器
+    })
+----------------------------------------------------------------------------
+router路由
+    定义：不同的目录对应不同的模块     目的：简化服务器
+
+    一个router相当于一个小的express,和express有相同的功能，相当于一个子服务
+
+    使用：
+        var routeUser=express.Router();
+        routeUser.get("/1.html",function (req,res){
+            res.send("user111");
+        })
+        server.use("/user",routeUser);

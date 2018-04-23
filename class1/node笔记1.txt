@@ -1,0 +1,22 @@
+1.node安装
+（1）node下载地址：https://nodejs.org/en/，一般下载安装最新稳定版本
+（2）查看安装结果与版本  
+	node -v #查看安装版本
+	npm -v #查看npm安装版本
+（3）使用国内的淘宝镜像
+	npm install -g cnpm --registry=https://registry.npm.taobao.org
+	查看安装版本 cnpm -v
+
+2.npm 安装下载模块全局安装和本地安装的区别
+（1）全局安装
+	全局安装方式是键入命令：npm install gulp -g 或 npm install gulp --global，其中参数-g的含义是代表安装到全局环境里面，包安装在Node安装目录下的node_modules文件夹中，一般在 \Users\用户名\AppData\Roaming\ 目录下，可以使用npm root -g查看全局安装目录。
+（2）本地安装
+	本地安装方式是键入命令：npm install gulp 或 npm install gulp --save-dev等，其中参数--save-dev的含义是代表把你的安装包信息写入package.json文件的devDependencies字段中，包安装在指定项目的node_modules文件夹下。
+	调用方式：本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块，如下示例，本地安装后直接在gulpfile.js中require('gulp')。
+
+3.命令行基本操作	
+	从一个文件夹进入到另一个文件夹下  例如：d:
+	进入到某个文件夹  例如：cd node
+	退出当前目录      例如:cd..
+	运行js文件        例如：node 1.js
+	退出执行          例如：ctrl+c

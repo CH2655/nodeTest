@@ -1,0 +1,14 @@
+模块化
+1.系统模块http、url、querystring
+    assert断言（例如测试两个值是否相等，深度相等）
+    Crypto	加密
+    Events	事件
+    Net	网络操作
+    OS	操作系统信息
+    Path	处理文件路径
+    Stream	流操作
+    Timers	定时器
+    ZLIB	压缩
+
+2.自定义模块
+3.包管理器

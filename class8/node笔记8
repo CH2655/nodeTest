@@ -1,0 +1,66 @@
+自定义模块
+    1.模块组成
+
+    require 请求：引入模块
+                   系统模块
+                   自定义模块
+
+                   require("./mod.js");  ./说明引入的自己的模块
+                   不加./  需要把自己写的模块放在node_modules文件夹里面
+    module  模块
+            批量输出
+            module.exports={
+                a:12,
+                b:13,
+                c:14
+            }
+    exports 输出
+            想要对外输出东西 必须加在exports身上
+            exports好处：可控制谁输出谁不输出
+            exports.a=12;
+            exports.b=13;
+            exports.c=14;  逐个输出比较麻烦可用module批量输出
+
+    *引入模块的时候后缀名.js可以不要
+2.npm（node package manager）包管理器
+   （1）统一下载途径
+   （2）自动下载依赖文件
+    npm install "xxx" 安装模块
+    npm uninstall "xxx" 卸载模块
+3.发布自己的模块
+    node_modules可以放自己的模块（这样不需要加./）
+
+    require
+        （1）有./
+                从当前目录找
+        （2）无./
+                从node_modules找
+    优先级：
+        先从系统模块找
+        再从node_modules找
+--------------------------------------------------------------------------------
+在npm官网上可以发布自己的模块
+可以通过命令行登录
+    npm login  输入账号密码进行登录  还可以通过npm whoami来查询自己的登录信息
+    npm init 初始化自己要上传的包信息   然后一步一步填写信息 完成之后生成一个packagejson文件记录一些基本信息
+             然后编写好自要发布的js
+    npm publish 发布自己的文件(首次注册登录的需要验证邮箱);
+
+    上传成功之后就可以下载了  然后就像require系统模块一样引入 就可以了
+
+
+更新上传的包
+    更改好方法之后，需要改一下版本号
+    然后再npm publish就OK啦
+
+
+    使用自己上传的包，就像下载系统模块一样下载就可以，当下载之后包又更新了 需下载更新包，
+    npm update '包名称'就可以了
+
+删除上传的包
+    npm unpublish
+    然后确认删除 npm --force unpublish
+    一个一个版本删除
+
+
+

@@ -1,0 +1,53 @@
+jade
+    (1)jade中直接写字母会自动解析成标签的形式输出
+        原样输出需要加一个|  例如：|abc   可以解决直接在模板中加js代码的问题
+        script
+                    | window.onload=function (){
+                    |   var oBtn=document.getElementById("box")
+                    |   oBtn.onclick=function (){
+                    |       alert("111")
+                    |   }
+        简写：
+        script.
+            window.onload=function (){
+                  var oBtn=document.getElementById("box")
+                  oBtn.onclick=function (){
+                      alert("111")
+            }
+        用inclucde引入
+            将js放在一个单独的js文件当中
+                include a.js即可
+    (2)jade模板中使用变量
+        var str=jade.renderFile("./views/5.jade",{pretty:true,name:"blue"});
+        模板中使用： div 我的名字：#{name}
+        简写： div=name
+        style和class直接写变量就可以
+    (3)模板中直接定义变量
+        -var a=12
+        -var b=15
+    (4)for循环
+        html
+            head
+            body
+                -for(var i=0;i<arr.length;i++)
+                    div=arr[i]
+    （5）非转义输出
+        将标签等原样输出
+        div!=content
+    （6）if判断
+         -var a=13;
+            if(a%2==0)
+                div(style="background:red") 偶数
+            else
+                div(style="background:green") 奇数
+    （7）switch
+         -var a=1;
+            case a
+                when 0
+                  div aaa
+                when 1
+                 div bbb
+                when 3
+                 div ccc
+                default
+                 |不靠谱

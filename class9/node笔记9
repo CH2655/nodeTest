@@ -1,0 +1,35 @@
+node框架express
+为什么要用express? 帮助开发很多写好的方法    保留了原生的功能  增加了新的方法
+1.安装
+    cnpm install express
+2.配置
+    （1）引入express框架   var express=require("express");
+    （2）创建服务      var server=express();
+    （3）监听端口      server.listen(端口)
+3.接收请求，响应数据
+    接收数据返回数据
+    use("端口路径"，function（req,res）{
+        res.send()//返回数据
+        res.end();
+    })
+
+    req  res是封装过得不是原生的  非侵入式   原生的保留  新加了一些功能
+    原生
+    res.wirte()   //原始的传json形式的数据会报错
+
+    新增
+    res.send()   //传任何形式的数据不会报错
+------------------------------------------------------------------------------
+4.接收用户请求有三种方法
+(1)get  接收get请求
+(2)post 接收post请求
+(3)use  get/post都可以接收
+
+5.中间件（插件）
+    express-static   去指定的目录下去读取静态文件
+    用法  下载好require进来
+           server.use(expressStatic("指定的文件路径"));
+
+   *注意：ajax不支持跨域请求，ajax请求时必须在同一端口下，去端口中找文件需要用readfile读文件或者用expressStatic读取静态文件
+6.express方法
+    req.query() 直接接收get方法的数据

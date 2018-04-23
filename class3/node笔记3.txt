@@ -1,0 +1,12 @@
+1.http模块读写文件
+	文件操作：fs--File System
+	（1）读取文件 
+		下载模块fs,引入
+		fs.readFile("文件路径"，function（err,data）{
+			//err读取失败
+			//data读取的数据 返回的是以二进制形式返回需要用			  		  toString的方法转成字符串
+		})
+	（2）写文件
+		fs.writeFile("文件名称"，"内容",function (err){
+			//err失败函数
+		})

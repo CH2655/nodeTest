@@ -1,0 +1,23 @@
+1、express接收get数据、post数据
+    (1)接收get请求的数据直接用express中的req.query就可得到数据
+    (2)接收post数据
+           中间件
+           需要一个中间件body-parser
+           //接收post数据
+           server.bodyParser({
+                extended:false,//扩展模式
+                limit:         //数据限制大小  默认是100k
+           })
+           //req.body来接收数据
+           自己写中间件
+2、链式操作
+    监听同一请求的地址：先做完某一个事件，再做某个事件叫链式操作
+    server.use("/", function (req,res,next) {
+        console.log("a");
+        req.a=123
+        next();//调用之后才可以完成下面的操作
+    })
+    server.use("/", function (req,res) {
+        console.log(req.a);//链式操作中的数据可以传递 ，上一个操作定义的变量在这个操作中可以用得到
+        console.log("b");
+    })

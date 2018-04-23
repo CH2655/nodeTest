@@ -1,0 +1,24 @@
+1.创建node服务器
+	（1）下载http模块
+		cnpm install http
+		会在所在目录下自动增加一个node_modules文件夹，其中就包含下载好的模块（本地下载）
+	（2）引入http模块
+	 	var/const http=require("http");
+	（创建服务）
+		var server=http.createServer(function 		(request,response)){
+			//request为接收的参数,请求的信息
+			//response为返回的参数,输出的信息
+		}
+	（3）监听端口
+		server.listen(8080);
+2.给请求的页面返回值
+response的方法
+	write:创建服务的回调函数里面res.write("string");
+	end:res调用方法之后需要结束掉，需要在后边加一个res.end();
+3.接受请求路径的方法
+resquest的方法
+	url:获取访问的路径   resquest.url
+		例如：http://localhost:8081/3.html（访问路径）
+		      resquest.url返回/3.html
+	
+		

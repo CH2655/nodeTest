@@ -1,0 +1,22 @@
+ejs模板
+    1、使用
+        下载ejs模块，并且引用进来
+        ejs.renderFile("路径",{数据},function (err,data){
+            data即为请求模板返回的str
+        })
+    2、读取数据
+        (1)读取变量
+            <div><%=name%>></div>
+        (2)读取json
+            <div><%=json.arr[0].user%></div>
+    3、循环
+        <% for(var i=0;i<json.arr.length;i++){ %>
+            <div>用户名：<%=json.arr[i].user%> 密码：<%=json.arr[i].pass%></div>
+        <% } %>
+    4、转义输出("-"为转义输出)
+        <% var str="<div></div>"%>
+        <%-str%>
+    5、ejs模板读取文件
+        <% include ../a.txt %>
+        引入的只能是string不能是变量
+
