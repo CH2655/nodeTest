@@ -1,0 +1,24 @@
+*body-parser只能解析数据类的post数据，不能解析文件类的数据
+
+form表单上传文件 需要添加属性enctype="multipart/form-data"
+    multipart/form-data:可以上传文件和数值(默认值)
+    application/x-www-form-urlencoded:上传数值
+    text/plain:只可上传纯文本（最没有用的）
+
+
+接收post的文件数据，需要中间件multer
+    var multerObj=multer({dest:'./www/upload'});  //dest文件保存的路径
+    multerObj.single("fileName");//接收一个文件名为fileName的文件
+    multerObj.any();//接收所有的文件
+接收的值：
+    req.files
+上传之后的是没有后缀名的文件，需要加上后缀名
+    (1)获取原始文件的扩展名（path模块进行获取）
+        path.parser("路径");
+       { root: 'c:\\',
+         dir: 'c:\\wamp\\www',   //路径
+         base: 'a.html',         //文件名
+         ext: '.html',           //扩展名
+         name: 'a' }             //原始名字
+    (2)重命名文件（fs模块中的rename方法）
+        fs.rename("oldName","newName",function (){})
